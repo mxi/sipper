@@ -43,22 +43,35 @@ extracted only the parts they cared about.
 
 As of this commit, the format currently known is as follows:
 
-```
-HEADER (328 bytes)
-	SIGNATURE "AVS84" (5 bytes)
-	BLOCK ??? (125 bytes)
-	MYSTERY ??? (6 bytes) *(FILE UNIQUE ???)
-	BLOCK ??? (188 bytes)
-	MYSTERY ??? (4 bytes)
-SERIES (27200 bytes ???)
-	BLOCK Float32 IEEE-754 LE, "X-axis" (13600 bytes)
-	BLOCK Float32 IEEE-754 LE, "Y-axis" (13600 bytes)
-BLOCK ??? (13600 bytes)
-NULL ??? (13614 bytes)
-MYSTERY ??? (10 bytes)
-CONSTANT Int32 LE = 0xc8000042 (1882 bytes)
-NULL ??? (1882 bytes)
-```
+#### HEADER 
+
+| address | type             | description              | size (bytes) |
+|---------|------------------|--------------------------|--------------|
+| 0x0000  | ascii-string     | "AVS84"                  | 5            |
+| 0x0005  | block            | ?                        | 9            |
+| 0x000e  | ascii-string     | spectrometer serial ID   | 9            |
+| 0x0017  | block            | ?                        | 1            |
+| 0x0018  | ascii-string     | spectrometer serial ID   | 9            |
+| 0x0021  | block            | null padding?            | 3            |
+| 0x0024  | block            | ?                        | 292          |
+
+#### SERIES
+
+| address | type             | description              | size (bytes) |
+|---------|------------------|--------------------------|--------------|
+| 0x0148  | f32 []           | X axis                   | 13600 ?      |
+| 0x3668  | f32 []           | Y axis                   | 13600 ?      |
+| 0x6b88  | f32 []           | Z axis ?                 | 13600 ?      |
+
+#### FOOTER
+
+| address | type             | description              | size (bytes) |
+|---------|------------------|--------------------------|--------------|
+| 0xa0a8  | block            | null padding?            | 13612 ?      |
+| 0xd5d4  | f32              | constant `1.0f`?         | 4            |
+| 0xd5d8  | block            | null padding?            | 5            |
+| 0xd5dd  | block            | constant `10.0f` array?  | 1884         |
+| 0xdd39  | block            | null padding?            | 1883         |
 
 ### Observations
 
