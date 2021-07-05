@@ -1,4 +1,4 @@
-# Jeff the Sipper
+# 🗿 Jeff the Sipper
 
 > *The infamous brother of John the Ripper. The man we all
 need but don't deserve. Father to murdered son, husband
