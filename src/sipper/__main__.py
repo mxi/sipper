@@ -8,7 +8,7 @@ from sipper import getelse
 from sipper.getopt import Option, Switch, getopt 
 
 
-__version__ = '0.0.3-dev'
+__version__ = '0.0.5-dev'
 
 terse = \
 f"""
@@ -27,7 +27,7 @@ OPTIONS
     -y, --override                 Override any existing input.
     -x, --excel-sheet              Write data to individual 
                                        spreadsheets.
-    -X, --excel-boot               Write data to a single spreadsheet
+    -X, --excel-book               Write data to a single spreadsheet
                                        with a sheet per input file.
     -c, --csv                      Write data to individual CSV files.
 
@@ -100,9 +100,9 @@ OPTIONS
         Override any existing files with the new output files.
 
     -x, --excel-sheet
-        Convert input data into individual Excel spreadsheets for each
-        input file. Each worksheet in each notebook has a name that is
-        reflective of the corresponding input file name.
+        Convert input data into individual Excel workbooks. Each sheet 
+        within each output workbook has a name reflecting that of the
+        corresponding input file.
 
     -X, --excel-book
         Convert input data into a single, coalesched Excel workbook with
